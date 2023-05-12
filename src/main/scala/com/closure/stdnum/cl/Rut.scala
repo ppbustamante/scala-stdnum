@@ -34,7 +34,7 @@ object RUT:
   /** Convert the number to the minimal representation. This strips the number
     * of any valid separators and removes surrounding whitespace.
     */
-  private def compact(number: String): String =
+  def compact(number: String): String =
     val cleanedNumber =
       Utils.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
     if cleanedNumber.startsWith("CL") then cleanedNumber.drop(2)

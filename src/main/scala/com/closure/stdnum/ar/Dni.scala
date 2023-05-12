@@ -8,7 +8,7 @@ import com.closure.stdnum.exceptions.{
 import com.closure.stdnum.utils.Utils
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
-object DNI {
+object Dni {
 
   /** Convert the number to the minimal representation. This strips the number
     * of any valid separators and removes surrounding whitespace.

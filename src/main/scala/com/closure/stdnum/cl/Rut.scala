@@ -9,7 +9,7 @@ import com.closure.stdnum.exceptions.{
 import com.closure.stdnum.utils.Utils
 
 /** RUT (Rol Único Tributario, Chilean national tax number). */
-object RUT:
+object Rut:
   /** Check if the number is a valid RUT. */
   def isValid(number: String): Boolean = this.validate(number).isRight
 
@@ -17,7 +17,7 @@ object RUT:
   def format(number: String): String =
     val fNumber = this.compact(number)
     s"${fNumber.dropRight(7)}.${fNumber.dropRight(4).takeRight(3)}.${fNumber.init
-        .takeRight(3)}.-${fNumber.last}"
+        .takeRight(3)}-${fNumber.last}"
 
   /** Check if the number is a valid RUT. This checks the length, formatting and
     * check digit.
@@ -43,11 +43,11 @@ object RUT:
   /** Calculate the check digit. The number passed should not have the check
     * digit included.
     */
-  def calcCheckDigit(number: String): Char =
+  private def calcCheckDigit(number: String): Char =
     val rut = number.toVector
-    val modulus: Int = 11 - (((rut.map(i => i.toInt - 48)) zip rut.indices
+    val modulus: Int = 11 - ((rut.map(i => i.toInt - 48) zip rut.indices
       .map(i => i % 6 + 2)
-      .reverse).map(i => i._1 * i._2).foldLeft(0)((a, b) => a + b) % 11)
+      .reverse).map(i => i._1 * i._2).sum % 11)
     if modulus == 11 then '0'
     else if modulus == 10 then 'K'
     else (modulus + 48).toChar

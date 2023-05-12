@@ -24,14 +24,12 @@ parsing and handling functions.
 All modules implement a common interface. For example for RUT validation:
 
 ```scala
-scala >
+scala> import com.closure.stdnum.cl.RUT
 
-import com.closure.stdnum.cl.RUT
-
-scala > RUT.validate("39.232.415-1")
+scala> RUT.validate("39.232.415-1")
 val res0: Either[com.closure.stdnum.exceptions.ValidationError, String] = Right(392324151)
 
-scala > RUT.validate("23.431.324-3")
+scala> RUT.validate("23.431.324-3")
 val res1: Either[com.closure.stdnum.exceptions.ValidationError, String] = Left(com.closure.stdnum.exceptions.InvalidChecksum)
 ```
 

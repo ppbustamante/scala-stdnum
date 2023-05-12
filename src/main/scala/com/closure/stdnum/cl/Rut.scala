@@ -1,6 +1,6 @@
 package com.closure.stdnum.cl
 
-import com.closure.stdnum.exceptions.{
+import com.closure.stdnum.{
   InvalidChecksum,
   InvalidFormat,
   InvalidLength,

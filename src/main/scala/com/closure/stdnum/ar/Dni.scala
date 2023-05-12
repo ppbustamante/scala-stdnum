@@ -1,6 +1,6 @@
 package com.closure.stdnum.ar
 
-import com.closure.stdnum.exceptions.{
+import com.closure.stdnum.{
   ValidationError,
   InvalidFormat,
   InvalidLength

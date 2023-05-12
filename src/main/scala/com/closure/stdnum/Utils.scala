@@ -1,4 +1,4 @@
-package com.closure.stdnum.utils
+package com.closure.stdnum
 
 object Utils:
   /** Check whether the provided string only consists of digits.

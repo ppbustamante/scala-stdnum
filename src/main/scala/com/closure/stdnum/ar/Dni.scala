@@ -5,7 +5,7 @@ import com.closure.stdnum.exceptions.{
   InvalidFormat,
   InvalidLength
 }
-import com.closure.stdnum.utils.Utils
+import com.closure.stdnum.Utils
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
 object Dni {

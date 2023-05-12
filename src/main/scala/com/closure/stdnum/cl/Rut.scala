@@ -1,12 +1,12 @@
 package com.closure.stdnum.cl
 
 import com.closure.stdnum.exceptions.{
-  ValidationError,
-  InvalidLength,
   InvalidChecksum,
-  InvalidFormat
+  InvalidFormat,
+  InvalidLength,
+  ValidationError
 }
-import com.closure.stdnum.utils.Utils
+import com.closure.stdnum.Utils
 
 /** RUT (Rol Único Tributario, Chilean national tax number). */
 object Rut:

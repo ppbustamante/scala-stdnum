@@ -1,10 +1,8 @@
 # scala-stdnum
 
-A Scala library to parse, validate and reformat standard numbers and codes in different formats. It contains a large
-collection of number formats.
+A Scala library to parse, validate and reformat standard numbers and codes in different formats. It contains a large collection of number formats.
 
-Basically any number or code that has some validation mechanism available or some common formatting is eligible for
-inclusion in this library.
+Basically any number or code that has some validation mechanism available or some common formatting is eligible for inclusion in this library.
 
 ## Available formats
 
@@ -13,18 +11,15 @@ Currently, this package supports the following formats:
 - DNI (Documento Nacional de Identidad, Argentinian national identity nr.)
 - RUT (Rol Único Tributario, Chilean national tax number)
 
-Basically any number or code that has some validation mechanism available or some common formatting is eligible for
-inclusion into this library.
 
-These modules generally do not provide background information on the meaning and use of the specified numbers, only
-parsing and handling functions.
+These modules generally do not provide background information on the meaning and use of the specified numbers, only parsing and handling functions.
 
 ## Interface
 
 All modules implement a common interface. For example for RUT validation:
 
 ```scala
-scala> import com.closure.stdnum.cl.RUT
+scala> import cl.mixin.stdnum.cl.RUT
 
 scala> RUT.validate("39.232.415-1")
 val res0: Either[com.closure.stdnum.exceptions.ValidationError, String] = Right(392324151)

@@ -1,7 +1,7 @@
-package com.closure.stdnum.ar
+package cl.mixin.stdnum.ar
 
-import com.closure.stdnum.{ValidationError, InvalidFormat, InvalidLength}
-import com.closure.stdnum.Tools
+import cl.mixin.stdnum.{ValidationError, InvalidFormat, InvalidLength}
+import cl.mixin.stdnum.Tools
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
 object Dni {

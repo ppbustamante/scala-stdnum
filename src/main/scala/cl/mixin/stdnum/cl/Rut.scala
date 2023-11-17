@@ -1,12 +1,12 @@
-package com.closure.stdnum.cl
+package cl.mixin.stdnum.cl
 
-import com.closure.stdnum.{
+import cl.mixin.stdnum.{
   InvalidChecksum,
   InvalidFormat,
   InvalidLength,
   ValidationError
 }
-import com.closure.stdnum.Tools
+import cl.mixin.stdnum.Tools
 
 /** RUT (Rol Único Tributario, Chilean national tax number). */
 object Rut:

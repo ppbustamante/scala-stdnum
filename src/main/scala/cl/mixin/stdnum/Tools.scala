@@ -1,4 +1,4 @@
-package com.closure.stdnum
+package cl.mixin.stdnum
 
 object Tools:
   /** Check whether the provided string only consists of digits.

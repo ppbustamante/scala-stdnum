@@ -1,4 +1,4 @@
-import com.closure.stdnum.cl.Rut
+import cl.mixin.stdnum.cl.Rut
 
 class RutSuite extends munit.FunSuite {
   test("format valid RUT") {
@@ -14,6 +14,11 @@ class RutSuite extends munit.FunSuite {
   test("validate valid RUT") {
     val validRut = Rut.validate("30.866.897-5")
     assert(validRut.isRight)
+  }
+
+  test("validate invalid RUT") {
+    val validRut = Rut.validate("30.866.497-5")
+    assert(validRut.isLeft)
   }
 
   test("isValid valid RUT") {

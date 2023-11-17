@@ -1,11 +1,6 @@
 package cl.mixin.stdnum.cl
 
-import cl.mixin.stdnum.{
-  InvalidChecksum,
-  InvalidFormat,
-  InvalidLength,
-  ValidationError
-}
+import cl.mixin.stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, ValidationError}
 import cl.mixin.stdnum.Tools
 
 /** RUT (Rol Único Tributario, Chilean national tax number). */
@@ -19,20 +14,18 @@ object Rut:
     s"${fNumber.dropRight(7)}.${fNumber.dropRight(4).takeRight(3)}.${fNumber.init
         .takeRight(3)}-${fNumber.last}"
 
-  /** Check if the number is a valid RUT. This checks the length, formatting and
-    * check digit.
+  /** Check if the number is a valid RUT. This checks the length, formatting and check digit.
     */
   def validate(number: String): Either[ValidationError, String] =
     val compactNumber = this.compact(number)
-    if compactNumber.length != 8 && compactNumber.length != 9 then
-      Left(InvalidLength())
+    if compactNumber.length != 8 && compactNumber.length != 9 then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber.init) then Left(InvalidFormat())
     else if this.calcCheckDigit(compactNumber.init) != compactNumber.last then
       Left(InvalidChecksum())
     else Right(compactNumber)
 
-  /** Convert the number to the minimal representation. This strips the number
-    * of any valid separators and removes surrounding whitespace.
+  /** Convert the number to the minimal representation. This strips the number of any valid
+    * separators and removes surrounding whitespace.
     */
   def compact(number: String): String =
     val cleanedNumber =
@@ -40,8 +33,7 @@ object Rut:
     if cleanedNumber.startsWith("CL") then cleanedNumber.drop(2)
     else cleanedNumber
 
-  /** Calculate the check digit. The number passed should not have the check
-    * digit included.
+  /** Calculate the check digit. The number passed should not have the check digit included.
     */
   private def calcCheckDigit(number: String): Char =
     val rut = number.toVector

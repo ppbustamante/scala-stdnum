@@ -8,8 +8,8 @@ object Tools:
   /** Remove the specified characters from the supplied number.
     */
   def clean(
-      number: String,
-      deleteChars: Vector[Char] = Vector.empty[Char]
+    number: String,
+    deleteChars: Vector[Char] = Vector.empty[Char]
   ): String =
     // TODO: Replace various Unicode characters with their ASCII counterpart.
     (for {

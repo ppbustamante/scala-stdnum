@@ -1,25 +1,23 @@
 package cl.mixin.stdnum.ar
 
-import cl.mixin.stdnum.{ValidationError, InvalidFormat, InvalidLength}
+import cl.mixin.stdnum.{InvalidFormat, InvalidLength, ValidationError}
 import cl.mixin.stdnum.Tools
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
 object Dni {
 
-  /** Convert the number to the minimal representation. This strips the number
-    * of any valid separators and removes surrounding whitespace.
+  /** Convert the number to the minimal representation. This strips the number of any valid
+    * separators and removes surrounding whitespace.
     */
   def compact(number: String): String =
     Tools.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
 
-  /** Check if the number is a valid DNI. This checks the length, formatting and
-    * check digit.
+  /** Check if the number is a valid DNI. This checks the length, formatting and check digit.
     */
   def validate(number: String): Either[ValidationError, String] =
     val compactNumber = this.compact(number)
     if !Tools.isDigits(compactNumber) then Left(InvalidFormat())
-    else if compactNumber.length != 7 && compactNumber.length != 8 then
-      Left(InvalidLength())
+    else if compactNumber.length != 7 && compactNumber.length != 8 then Left(InvalidLength())
     else Right(compactNumber)
 
   /** Check if the number is a valid DNI. */

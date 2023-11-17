@@ -6,7 +6,7 @@ import com.closure.stdnum.{
   InvalidLength,
   ValidationError
 }
-import com.closure.stdnum.Utils
+import com.closure.stdnum.Tools
 
 /** RUT (Rol Único Tributario, Chilean national tax number). */
 object Rut:
@@ -26,7 +26,7 @@ object Rut:
     val compactNumber = this.compact(number)
     if compactNumber.length != 8 && compactNumber.length != 9 then
       Left(InvalidLength())
-    else if !Utils.isDigits(compactNumber.init) then Left(InvalidFormat())
+    else if !Tools.isDigits(compactNumber.init) then Left(InvalidFormat())
     else if this.calcCheckDigit(compactNumber.init) != compactNumber.last then
       Left(InvalidChecksum())
     else Right(compactNumber)
@@ -36,7 +36,7 @@ object Rut:
     */
   def compact(number: String): String =
     val cleanedNumber =
-      Utils.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
+      Tools.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
     if cleanedNumber.startsWith("CL") then cleanedNumber.drop(2)
     else cleanedNumber
 

@@ -1,6 +1,6 @@
 package com.closure.stdnum
 
-object Utils:
+object Tools:
   /** Check whether the provided string only consists of digits.
     */
   def isDigits(number: String): Boolean = number.forall(_.isDigit)

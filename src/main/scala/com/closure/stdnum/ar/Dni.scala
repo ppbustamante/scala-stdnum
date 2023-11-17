@@ -1,11 +1,7 @@
 package com.closure.stdnum.ar
 
-import com.closure.stdnum.{
-  ValidationError,
-  InvalidFormat,
-  InvalidLength
-}
-import com.closure.stdnum.Utils
+import com.closure.stdnum.{ValidationError, InvalidFormat, InvalidLength}
+import com.closure.stdnum.Tools
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
 object Dni {
@@ -14,14 +10,14 @@ object Dni {
     * of any valid separators and removes surrounding whitespace.
     */
   def compact(number: String): String =
-    Utils.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
+    Tools.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
 
   /** Check if the number is a valid DNI. This checks the length, formatting and
     * check digit.
     */
   def validate(number: String): Either[ValidationError, String] =
     val compactNumber = this.compact(number)
-    if !Utils.isDigits(compactNumber) then Left(InvalidFormat())
+    if !Tools.isDigits(compactNumber) then Left(InvalidFormat())
     else if compactNumber.length != 7 && compactNumber.length != 8 then
       Left(InvalidLength())
     else Right(compactNumber)

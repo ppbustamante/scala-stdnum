@@ -9,6 +9,7 @@ Basically any number or code that has some validation mechanism available or som
 Currently, this package supports the following formats:
 
 - DNI (Documento Nacional de Identidad, Argentinian national identity nr.)
+- CUIT (Código Único de Identificación Tributaria, Argentinian tax number)
 - RUT (Rol Único Tributario, Chilean national tax number)
 
 These modules generally do not provide background information on the meaning and use of the specified numbers, only parsing and handling functions.

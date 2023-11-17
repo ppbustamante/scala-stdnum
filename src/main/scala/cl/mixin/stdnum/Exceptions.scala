@@ -15,6 +15,10 @@ class InvalidFormat() extends ValidationError
   */
 case class InvalidChecksum() extends ValidationError
 
+/** The number's internal checksum or check digit does not match.
+  */
+case class InvalidComponent() extends ValidationError
+
 /** The length of the number is wrong.
   */
 case class InvalidLength() extends InvalidFormat

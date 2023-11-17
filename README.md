@@ -14,6 +14,7 @@ Currently, this package supports the following formats:
 - CUIT (Código Único de Identificación Tributaria, Argentinian tax number)
 - RUT (Rol Único Tributario, Chilean national tax number.)
 - RFC (Registro Federal de Contribuyentes, Mexican tax number.)
+- CURP (Clave Única de Registro de Población, Mexican personal ID.)
 
 These modules generally do not provide background information on the meaning and use of the specified numbers, only parsing and handling functions.
 

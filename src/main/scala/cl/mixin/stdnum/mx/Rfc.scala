@@ -11,7 +11,28 @@ import scala.util.Random
 import scala.util.Try
 import scala.util.matching.Regex
 
-/** RFC (Registro Federal de Contribuyentes, Mexican tax number). */
+/** RFC (Registro Federal de Contribuyentes, Mexican tax number).
+  *
+  * This number is used to identify individuals and companies for tax purposes.
+  *
+  * The company number is 12 digits where the first 3 letters or digits are derived from the name of
+  * the company, the following 6 contain the date of incorporation, followed by 3 check digits.
+  *
+  * Personal numbers consist of 13 digits where the first 4 characters from the person's name,
+  * followed by their birth date and 3 check digits.
+  *
+  * The first two check digits are calculated based on the person's or company's full name. The last
+  * check digit is calculated over all the preceding digits in the number. However, it seems a lot
+  * of numbers (estimated at around 1.5% of all numbers) are in use with invalid check digits so
+  * this test is disabled by default.
+  *
+  * More information:
+  *   - https://www.infomex.org.mx/jspsi/documentos/2005/seguimiento/06101/0610100162005_065.doc
+  *   - https://es.wikipedia.org/wiki/Registro_Federal_de_Contribuyentes_(M%C3%A9xico)
+  *
+  * An online validation service is available at:
+  *   - https://portalsat.plataforma.sat.gob.mx/ConsultaRFC/
+  */
 object Rfc {
   // these values should not appear as first part of a personal number
   private val NAME_BLACKLIST = Vector(
@@ -79,9 +100,9 @@ object Rfc {
     * separators and removes surrounding whitespace.
     */
   def compact(number: String): String =
-    return Tools.clean(number, Vector('-', '_', ' ')).toUpperCase.strip
+    Tools.clean(number, Vector('-', '_', ' ')).toUpperCase.strip
 
-  /** Check if the number is a valid RUT. This checks the length, formatting and check digit.
+  /** Check if the number is a valid RFC. This checks the length, formatting and check digit.
     */
   def validate(
     number: String,
@@ -119,7 +140,7 @@ object Rfc {
     */
   private def calcCheckDigit(number: String): Char =
     val concatNumber = s"   $number".takeRight(12)
-    val check = number.zipWithIndex.map((n, i) => ALPHABET.indexOf(n.toChar) * (13 - i)).sum
+    val check = concatNumber.zipWithIndex.map((n, i) => ALPHABET.indexOf(n.toChar) * (13 - i)).sum
     val index = (11 - check) % 11
     if index < 0 then ALPHABET(ALPHABET.length - math.abs(index)) else ALPHABET(index)
 }

@@ -18,7 +18,6 @@ class CuitSuite extends munit.FunSuite {
 
   test("validate invalid CUIT") {
     val invalidCuit = Cuit.validate("20-26756539-2")
-    println(invalidCuit)
     assert(invalidCuit.isLeft)
   }
 

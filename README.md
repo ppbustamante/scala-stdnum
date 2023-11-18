@@ -24,12 +24,12 @@ These modules generally do not provide background information on the meaning and
 All modules implement a common interface. For example for RUT validation:
 
 ```scala
-scala> import cl.mixin.stdnum.cl.RUT
+import cl.mixin.stdnum.cl.RUT
 
-scala> RUT.validate("39.232.415-1")
+RUT.validate("39.232.415-1")
 val res0: Either[ValidationError, String] = Right(392324151)
 
-scala> RUT.validate("23.431.324-3")
+RUT.validate("23.431.324-3")
 val res1: Either[ValidationError, String] = Left(InvalidChecksum)
 ```
 

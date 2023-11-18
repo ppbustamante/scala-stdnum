@@ -1,12 +1,14 @@
 package cl.mixin.stdnum.mx
 
+import cl.mixin.stdnum.Identity
 import cl.mixin.stdnum.InvalidChecksum
 import cl.mixin.stdnum.InvalidComponent
 import cl.mixin.stdnum.InvalidFormat
 import cl.mixin.stdnum.InvalidLength
 import cl.mixin.stdnum.Tools
 import cl.mixin.stdnum.ValidationError
-import java.util.Date
+
+import java.util.{Date, GregorianCalendar}
 import scala.util.Try
 
 /** CURP (Clave Única de Registro de Población, Mexican personal ID).
@@ -19,7 +21,7 @@ import scala.util.Try
   *   - https://en.wikipedia.org/wiki/CURP
   *   - https://www.gob.mx/curp
   */
-object Curp {
+object CURP extends Identity {
   // these values should not appear as first part
   private val NAME_BLACKLIST = Vector(
     "BACA",
@@ -145,64 +147,43 @@ object Curp {
   // characters used for checksum calculation,
   private val ALPHABET = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ"
 
-  /** Split the date parts from the number and return the birth date.
-    *
-    * @param number
-    * @return
-    *   Try of Date
-    */
   private def getBirthDate(number: String): Try[Date] =
     Try {
-      val compatNumber = this.compact(number)
-      var year = compatNumber.drop(4).take(2).toInt
-      val month = compatNumber.drop(6).take(2).toInt
-      val day = compatNumber.drop(8).take(2).toInt
-      if compatNumber(16).isDigit then year += 1900
+      val compactNumber = this.compact(number)
+      var year = compactNumber.slice(4, 6).toInt
+      val month = compactNumber.slice(6, 8).toInt
+      val day = compactNumber.slice(8, 10).toInt
+      if compactNumber(16).isDigit then year += 1900
       else year += 2000
-      Date(year, month, day)
+      GregorianCalendar(year, month, day).getGregorianChange
     }
 
-  /** Get the gender (M/F) from the person's CURP.
-    *
-    * @param number
-    *   CURP number
-    * @return
-    *   gender
-    */
-  def getGender(number: String): Option[Char] =
-    val compatNumber = this.compact(number)
-    if compatNumber(10) == 'H' then Option('M')
-    else if compatNumber(10) == 'M' then Option('F')
+  private def getGender(number: String): Option[Char] =
+    val compactNumber = this.compact(number)
+    if compactNumber(10) == 'H' then Option('M')
+    else if compactNumber(10) == 'M' then Option('F')
     else None
 
-  /** Convert the number to the minimal representation. This strips the number of any valid
-    * separators and removes surrounding whitespace.
-    */
   def compact(number: String): String =
     Tools.clean(number, Vector('-', '_', ' ')).toUpperCase.strip
 
-  /** Check if the number is a valid CURP. */
-  def isValid(number: String): Boolean = this.validate(number).isRight
-
-  /** Check if the number is a valid CUPR. This checks the length, formatting and check digit. */
-  def validate(
+  override def validate(
     number: String,
     validateCheckDigits: Boolean = true
   ): Either[ValidationError, String] =
-    val compatNumber = this.compact(number)
-    if compatNumber.length != 18 then Left(InvalidLength())
-    else if !"^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9A-Z][0-9]$".r.matches(compatNumber) then
+    val compactNumber = this.compact(number)
+    if compactNumber.length != 18 then Left(InvalidLength())
+    else if !"^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9A-Z][0-9]$".r.matches(compactNumber) then
       Left(InvalidFormat())
-    else if NAME_BLACKLIST.contains(compatNumber.take(4)) then Left(InvalidComponent())
-    else if this.getBirthDate(compatNumber).isFailure then Left(InvalidComponent())
-    else if this.getGender(compatNumber).isEmpty then Left(InvalidComponent())
-    else if !VALID_STATES.contains(compatNumber.drop(11).take(2)) then Left(InvalidComponent())
-    else if validateCheckDigits && compatNumber.last.toString() != this.calcCheckDigit(compatNumber)
+    else if NAME_BLACKLIST.contains(compactNumber.take(4)) then Left(InvalidComponent())
+    else if this.getBirthDate(compactNumber).isFailure then Left(InvalidComponent())
+    else if this.getGender(compactNumber).isEmpty then Left(InvalidComponent())
+    else if !VALID_STATES.contains(compactNumber.slice(11, 13)) then Left(InvalidComponent())
+    else if validateCheckDigits && compactNumber.last.toString != this.calcCheckDigit(compactNumber)
     then Left(InvalidChecksum())
-    else Right(compatNumber)
+    else Right(compactNumber)
 
-  /** Reformat the number to the standard presentation format. */
-  def format(number: String): String = this.compact(number)
+  override def format(number: String, separator: String = ""): String = this.compact(number)
 
   /** Calculate the check digit. The number passed should not have the check digit included. */
   private def calcCheckDigit(number: String): String =
@@ -214,5 +195,5 @@ object Curp {
       .zipWithIndex
       .map((char: Char, index: Int) => ALPHABET.indexOf(char) * (18 - index))
       .sum
-    ((10 - (check % 10)) % 10).toString
+    math.floorMod(10 - math.floorMod(check, 10), 10).toString
 }

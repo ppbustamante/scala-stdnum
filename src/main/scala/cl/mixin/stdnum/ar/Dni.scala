@@ -1,30 +1,25 @@
 package cl.mixin.stdnum.ar
 
 import cl.mixin.stdnum.{InvalidFormat, InvalidLength, ValidationError}
+import cl.mixin.stdnum.Identity
 import cl.mixin.stdnum.Tools
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
-object Dni {
+object DNI extends Identity {
 
-  /** Convert the number to the minimal representation. This strips the number of any valid
-    * separators and removes surrounding whitespace.
-    */
-  def compact(number: String): String =
+  override def compact(number: String): String =
     Tools.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
 
-  /** Check if the number is a valid DNI. This checks the length, formatting and check digit.
-    */
-  def validate(number: String): Either[ValidationError, String] =
+  override def validate(
+    number: String,
+    validateCheckDigit: Boolean = true
+  ): Either[ValidationError, String] =
     val compactNumber = this.compact(number)
     if !Tools.isDigits(compactNumber) then Left(InvalidFormat())
     else if compactNumber.length != 7 && compactNumber.length != 8 then Left(InvalidLength())
     else Right(compactNumber)
 
-  /** Check if the number is a valid DNI. */
-  def isValid(number: String): Boolean = this.validate(number).isRight
-
-  /** Reformat the number to the standard presentation format. */
-  def format(number: String): String =
+  override def format(number: String, separator: String = "."): String =
     val fNumber = this.compact(number)
-    s"${fNumber.dropRight(6)}.${fNumber.dropRight(3).takeRight(3)}.${fNumber.takeRight(3)}"
+    s"${fNumber.dropRight(6)}$separator${fNumber.dropRight(3).takeRight(3)}$separator${fNumber.takeRight(3)}"
 }

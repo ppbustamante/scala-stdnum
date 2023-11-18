@@ -1,6 +1,7 @@
 package cl.mixin.stdnum.cl
 
 import cl.mixin.stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, ValidationError}
+import cl.mixin.stdnum.Identity
 import cl.mixin.stdnum.Tools
 
 /** RUT (Rol Único Tributario, Chilean national tax number).
@@ -8,19 +9,20 @@ import cl.mixin.stdnum.Tools
   * The RUT, the Chilean national tax number is the same as the RUN (Rol Único Nacional) the Chilean
   * national identification number. The number consists of 8 digits, followed by a check digit.
   */
-object Rut:
-  /** Check if the number is a valid RUT. */
-  def isValid(number: String): Boolean = this.validate(number).isRight
+object RUT extends Identity {
 
   /** Reformat the number to the standard presentation format. */
-  def format(number: String): String =
+  override def format(number: String, separator: String = " "): String =
     val fNumber = this.compact(number)
     s"${fNumber.dropRight(7)}.${fNumber.dropRight(4).takeRight(3)}.${fNumber.init
         .takeRight(3)}-${fNumber.last}"
 
   /** Check if the number is a valid RUT. This checks the length, formatting and check digit.
     */
-  def validate(number: String): Either[ValidationError, String] =
+  override def validate(
+    number: String,
+    validateCheckDigit: Boolean = true
+  ): Either[ValidationError, String] =
     val compactNumber = this.compact(number)
     if compactNumber.length != 8 && compactNumber.length != 9 then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber.init) then Left(InvalidFormat())
@@ -31,7 +33,7 @@ object Rut:
   /** Convert the number to the minimal representation. This strips the number of any valid
     * separators and removes surrounding whitespace.
     */
-  def compact(number: String): String =
+  override def compact(number: String): String =
     val cleanedNumber =
       Tools.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
     if cleanedNumber.startsWith("CL") then cleanedNumber.drop(2)
@@ -41,9 +43,10 @@ object Rut:
     */
   private def calcCheckDigit(number: String): Char =
     val rut = number.toVector
-    val modulus: Int = 11 - ((rut.map(i => i.toInt - 48) zip rut.indices
+    val modulus: Int = 11 - ((rut.map(i => i.asDigit) zip rut.indices
       .map(i => i % 6 + 2)
       .reverse).map(i => i._1 * i._2).sum % 11)
     if modulus == 11 then '0'
     else if modulus == 10 then 'K'
     else (modulus + 48).toChar
+}

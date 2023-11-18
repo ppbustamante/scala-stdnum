@@ -15,4 +15,4 @@ object Tools:
     (for {
       char <- number.toVector
       if !deleteChars.contains(char)
-    } yield char).mkString
+    } yield char).mkString.strip.toUpperCase

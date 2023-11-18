@@ -16,6 +16,7 @@ Currently, this package supports the following formats:
 - CBU (Clave Bancaria Uniforme, Argentine bank account number).
 - RFC (Registro Federal de Contribuyentes, Mexican tax number.)
 - CURP (Clave Única de Registro de Población, Mexican personal ID.)
+- NIT (Número De Identificación Tributaria, Colombian identity code).
 
 These modules generally do not provide background information on the meaning and use of the specified numbers, only parsing and handling functions.
 

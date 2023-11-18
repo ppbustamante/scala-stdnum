@@ -92,7 +92,7 @@ object RFC extends Identity {
     }
 
   def compact(number: String): String =
-    Tools.clean(number, Vector('-', '_', ' ')).toUpperCase.strip
+    Tools.clean(number, Vector('-', '_', ' '))
 
   override def validate(
     number: String,
@@ -124,7 +124,7 @@ object RFC extends Identity {
     if number.length == 12 then
       s"${fNumber.take(3)}$separator${fNumber.slice(3, 9)}$separator${fNumber.drop(9)}"
     else s"${fNumber.take(4)}$separator${fNumber.slice(4, 10)}$separator${fNumber.drop(10)}"
-  
+
   /** Calculate the check digit. The number passed should not have the check digit included.
     */
   private def calcCheckDigit(number: String): Char =

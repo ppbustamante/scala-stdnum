@@ -8,7 +8,7 @@ import cl.mixin.stdnum.Tools
 object DNI extends Identity {
 
   override def compact(number: String): String =
-    Tools.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
+    Tools.clean(number, Vector(' ', '-', '.'))
 
   override def validate(
     number: String,

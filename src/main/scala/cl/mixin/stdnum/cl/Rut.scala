@@ -35,7 +35,7 @@ object RUT extends Identity {
     */
   override def compact(number: String): String =
     val cleanedNumber =
-      Tools.clean(number, Vector(' ', '-', '.')).toUpperCase.strip
+      Tools.clean(number, Vector(' ', '-', '.'))
     if cleanedNumber.startsWith("CL") then cleanedNumber.drop(2)
     else cleanedNumber
 

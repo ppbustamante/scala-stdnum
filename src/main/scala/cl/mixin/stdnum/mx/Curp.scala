@@ -165,7 +165,7 @@ object CURP extends Identity {
     else None
 
   def compact(number: String): String =
-    Tools.clean(number, Vector('-', '_', ' ')).toUpperCase.strip
+    Tools.clean(number, Vector('-', '_', ' '))
 
   override def validate(
     number: String,

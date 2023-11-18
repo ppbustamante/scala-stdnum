@@ -24,7 +24,7 @@ object CUIT extends Identity {
   )
 
   override def compact(number: String): String =
-    Tools.clean(number, Vector(' ', '-')).toUpperCase.strip
+    Tools.clean(number, Vector(' ', '-'))
 
   override def format(number: String, separator: String = "-"): String =
     val fNumber = this.compact(number)

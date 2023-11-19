@@ -19,6 +19,7 @@ Currently, this package supports the following formats:
 - NIT (Número De Identificación Tributaria, Colombian identity code).
 - CNPJ (Cadastro Nacional da Pessoa Jurídica, Brazilian company identifier).
 - CPF (Cadastro de Pessoas Físicas, Brazilian national identifier).
+- RIF (Registro de Identificación Fiscal, Venezuelan VAT number).
 
 These modules generally do not provide background information on the meaning and use of the specified numbers, only parsing and handling functions.
 

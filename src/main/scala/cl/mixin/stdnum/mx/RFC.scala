@@ -102,7 +102,7 @@ object RFC extends Identity {
     def validateCs(validateCheckDigit: Boolean, number: String) =
       if validateCheckDigit && number.length >= 12 then
         if !"^[1-9A-V][1-9A-Z][0-9A]$".r.matches(number.takeRight(3)) then Left(InvalidComponent())
-        else if number.last != this.calcCheckDigit(number.init) then Left(InvalidChecksum())
+        else if number.last != this.calcCheckDigits(number.init) then Left(InvalidChecksum())
         else Right(number)
       else Right(number)
 
@@ -127,7 +127,7 @@ object RFC extends Identity {
 
   /** Calculate the check digit. The number passed should not have the check digit included.
     */
-  private def calcCheckDigit(number: String): Char =
+  private def calcCheckDigits(number: String): Char =
     val concatNumber = s"   $number".takeRight(12)
     val check = concatNumber.zipWithIndex.map((n, i) => ALPHABET.indexOf(n.toString) * (13 - i)).sum
     ALPHABET(math.floorMod(11 - check, 11))

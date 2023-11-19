@@ -32,13 +32,15 @@ object CBU extends Identity {
     val compactNumber = this.compact(number)
     if compactNumber.length != 22 then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber) then Left(InvalidFormat())
-    else if this.calcCheckDigit(compactNumber.take(7)) != compactNumber(7).toString then
+    else if this.calcCheckDigits(compactNumber.take(7)) != compactNumber(7).toString then
       Left(InvalidChecksum())
-    else if this.calcCheckDigit(compactNumber.drop(8).init) != compactNumber.last.toString then
-      Left(InvalidChecksum())
+    else if validateCheckDigit && this.calcCheckDigits(
+          compactNumber.drop(8).init
+        ) != compactNumber.last.toString
+    then Left(InvalidChecksum())
     else Right(compactNumber)
 
-  private def calcCheckDigit(number: String): String =
+  private def calcCheckDigits(number: String): String =
     val weights = Vector(3, 1, 7, 9)
     val check = number.reverse.zipWithIndex.map((c, i) => c.asDigit * weights(i % 4)).sum
     math.floorMod(10 - check, 10).toString

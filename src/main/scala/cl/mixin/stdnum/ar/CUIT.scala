@@ -38,13 +38,13 @@ object CUIT extends Identity {
     if compactNumber.length != 11 then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber) then Left(InvalidFormat())
     else if !CUIT_TYPES.contains(compactNumber.take(2)) then Left(InvalidComponent())
-    else if this.calcCheckDigit(compactNumber.init) != compactNumber.last then
-      Left(InvalidChecksum())
+    else if validateCheckDigit && this.calcCheckDigits(compactNumber.init) != compactNumber.last
+    then Left(InvalidChecksum())
     else Right(compactNumber)
 
   /** Calculate the check digit. The number passed should not have the check digit included.
     */
-  private def calcCheckDigit(number: String): Char =
+  private def calcCheckDigits(number: String): Char =
     val weights = Vector(5, 4, 3, 2, 7, 6, 5, 4, 3, 2)
     val check =
       math.floorMod(weights.zip(number).map((w, n) => w * n.asDigit).sum, 11)

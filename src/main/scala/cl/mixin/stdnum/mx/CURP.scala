@@ -179,14 +179,14 @@ object CURP extends Identity {
     else if this.getBirthDate(compactNumber).isFailure then Left(InvalidComponent())
     else if this.getGender(compactNumber).isEmpty then Left(InvalidComponent())
     else if !VALID_STATES.contains(compactNumber.slice(11, 13)) then Left(InvalidComponent())
-    else if validateCheckDigits && compactNumber.last.toString != this.calcCheckDigit(compactNumber)
+    else if validateCheckDigits && compactNumber.last.toString != this.calcCheckDigits(compactNumber)
     then Left(InvalidChecksum())
     else Right(compactNumber)
 
   override def format(number: String, separator: String = ""): String = this.compact(number)
 
   /** Calculate the check digit. The number passed should not have the check digit included. */
-  private def calcCheckDigit(number: String): String =
+  private def calcCheckDigits(number: String): String =
     /** check = sum(_alphabet.index(c) * (18 - i) for i, c in enumerate(number[:17])) return str((10
       * \- check % 10) % 10)
       */

@@ -18,6 +18,7 @@ Currently, this package supports the following formats:
 - CURP (Clave Única de Registro de Población, Mexican personal ID.)
 - NIT (Número De Identificación Tributaria, Colombian identity code).
 - CNPJ (Cadastro Nacional da Pessoa Jurídica, Brazilian company identifier).
+- CPF (Cadastro de Pessoas Físicas, Brazilian national identifier).
 
 These modules generally do not provide background information on the meaning and use of the specified numbers, only parsing and handling functions.
 

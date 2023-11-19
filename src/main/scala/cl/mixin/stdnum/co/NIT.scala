@@ -33,11 +33,11 @@ object NIT extends Identity {
     val compactNumber = this.compact(number)
     if !(8 <= compactNumber.length && compactNumber.length <= 16) then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber) then Left(InvalidFormat())
-    else if validateCheckDigit && this.calcCheckDigit(compactNumber.init) != compactNumber.last then
+    else if validateCheckDigit && this.calcCheckDigits(compactNumber.init) != compactNumber.last then
       Left(InvalidChecksum())
     else Right(compactNumber)
 
-  private def calcCheckDigit(number: String): Char =
+  private def calcCheckDigits(number: String): Char =
     val weights = Vector(3, 7, 13, 17, 19, 23, 29, 37, 41, 43, 47, 53, 59, 67, 71)
     val sum = weights.zip(number.reverse).map((w, n) => w * n.asDigit).sum
     "01987654321" (math.floorMod(sum, 11))

@@ -32,11 +32,11 @@ object CNPJ extends Identity {
     val compactNumber = this.compact(number)
     if !Tools.isDigits(compactNumber) || compactNumber.toLong <= 0 then Left(InvalidFormat())
     else if compactNumber.length != 14 then Left(InvalidLength())
-    else if this.calcCheckDigit(compactNumber) != compactNumber.takeRight(2) then
-      Left(InvalidChecksum())
+    else if validateCheckDigit && this.calcCheckDigits(compactNumber) != compactNumber.takeRight(2)
+    then Left(InvalidChecksum())
     else Right(compactNumber)
 
-  private def calcCheckDigit(number: String): String =
+  private def calcCheckDigits(number: String): String =
     val digitOne =
       math.floorMod(
         math.floorMod(

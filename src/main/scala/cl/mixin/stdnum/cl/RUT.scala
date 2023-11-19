@@ -26,7 +26,7 @@ object RUT extends Identity {
     val compactNumber = this.compact(number)
     if compactNumber.length != 8 && compactNumber.length != 9 then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber.init) then Left(InvalidFormat())
-    else if this.calcCheckDigit(compactNumber.init) != compactNumber.last then
+    else if validateCheckDigit && this.calcCheckDigits(compactNumber.init) != compactNumber.last then
       Left(InvalidChecksum())
     else Right(compactNumber)
 
@@ -41,7 +41,7 @@ object RUT extends Identity {
 
   /** Calculate the check digit. The number passed should not have the check digit included.
     */
-  private def calcCheckDigit(number: String): Char =
+  private def calcCheckDigits(number: String): Char =
     val rut = number.toVector
     val modulus: Int = 11 - ((rut.map(i => i.asDigit) zip rut.indices
       .map(i => i % 6 + 2)

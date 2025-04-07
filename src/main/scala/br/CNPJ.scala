@@ -1,13 +1,6 @@
-package cl.mixin.stdnum.br
+package stdnum.br
 
-import cl.mixin.stdnum.{
-  Validator,
-  InvalidChecksum,
-  InvalidFormat,
-  InvalidLength,
-  Tools,
-  ValidationError
-}
+import stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, Tools, ValidationError, Validator}
 
 /** CNPJ (Cadastro Nacional da Pessoa Jurídica, Brazilian company identifier).
   *

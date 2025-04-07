@@ -1,4 +1,4 @@
-package cl.mixin.stdnum
+package stdnum
 
 /** Top-level error for validating numbers. This exception should normally not be raised, only
   * subclasses of this exception.

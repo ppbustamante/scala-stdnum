@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.ar.CBU
+import stdnum.ar.CBU
 
 class CBUSuite extends munit.FunSuite {
   test("format valid CBU") {

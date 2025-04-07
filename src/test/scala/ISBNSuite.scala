@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.ISBN
+import stdnum.ISBN
 
 class ISBNSuite extends munit.FunSuite {
   test("format valid ISBN") {

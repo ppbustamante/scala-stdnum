@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.ar.CUIT
+import stdnum.ar.CUIT
 
 class CUITSuite extends munit.FunSuite {
   test("format valid CUIT") {

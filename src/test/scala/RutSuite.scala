@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.cl.RUT
+import stdnum.cl.RUT
 
 class RUTSuite extends munit.FunSuite {
   test("format valid RUT") {

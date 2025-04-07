@@ -1,4 +1,4 @@
-package cl.mixin.stdnum
+package stdnum
 
 object Tools:
   /** Check whether the provided string only consists of digits.

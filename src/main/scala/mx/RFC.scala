@@ -1,16 +1,18 @@
-package cl.mixin.stdnum.mx
+package stdnum.mx
 
-import cl.mixin.stdnum.Validator
-import cl.mixin.stdnum.InvalidChecksum
-import cl.mixin.stdnum.InvalidComponent
-import cl.mixin.stdnum.InvalidFormat
-import cl.mixin.stdnum.InvalidLength
-import cl.mixin.stdnum.Tools
-import cl.mixin.stdnum.ValidationError
 import java.util.{Calendar, Date, GregorianCalendar}
 import scala.util.Random
 import scala.util.Try
 import scala.util.matching.Regex
+import stdnum.{
+  InvalidChecksum,
+  InvalidComponent,
+  InvalidFormat,
+  InvalidLength,
+  Tools,
+  ValidationError,
+  Validator
+}
 
 /** RFC (Registro Federal de Contribuyentes, Mexican tax number).
   *

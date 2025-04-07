@@ -1,12 +1,14 @@
-package cl.mixin.stdnum.ar
+package stdnum.ar
 
-import cl.mixin.stdnum.Validator
-import cl.mixin.stdnum.InvalidChecksum
-import cl.mixin.stdnum.InvalidComponent
-import cl.mixin.stdnum.InvalidFormat
-import cl.mixin.stdnum.InvalidLength
-import cl.mixin.stdnum.Tools
-import cl.mixin.stdnum.ValidationError
+import stdnum.{
+  InvalidChecksum,
+  InvalidComponent,
+  InvalidFormat,
+  InvalidLength,
+  Tools,
+  ValidationError,
+  Validator
+}
 
 /** CUIT (Código Único de Identificación Tributaria, Argentinian tax number). */
 object CUIT extends Validator {

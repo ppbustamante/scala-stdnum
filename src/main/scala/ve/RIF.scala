@@ -1,13 +1,13 @@
-package cl.mixin.stdnum.ve
+package stdnum.ve
 
-import cl.mixin.stdnum.{
-  Validator,
+import stdnum.{
   InvalidChecksum,
   InvalidComponent,
   InvalidFormat,
   InvalidLength,
   Tools,
-  ValidationError
+  ValidationError,
+  Validator
 }
 
 /** RIF (Registro de Identificación Fiscal, Venezuelan VAT number).

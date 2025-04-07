@@ -1,13 +1,6 @@
-package cl.mixin.stdnum.ar
+package stdnum.ar
 
-import cl.mixin.stdnum.{
-  Validator,
-  InvalidChecksum,
-  InvalidFormat,
-  InvalidLength,
-  Tools,
-  ValidationError
-}
+import stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, Tools, ValidationError, Validator}
 
 /** CBU (Clave Bancaria Uniforme, Argentine bank account number).
   *

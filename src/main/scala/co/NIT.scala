@@ -1,13 +1,6 @@
-package cl.mixin.stdnum.co
+package stdnum.co
 
-import cl.mixin.stdnum.{
-  Validator,
-  InvalidChecksum,
-  InvalidFormat,
-  InvalidLength,
-  Tools,
-  ValidationError
-}
+import stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, Tools, ValidationError, Validator}
 
 /** NIT (Número De Identificación Tributaria, Colombian identity code).
   *
@@ -33,8 +26,8 @@ object NIT extends Validator {
     val compactNumber = this.compact(number)
     if !(8 <= compactNumber.length && compactNumber.length <= 16) then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber) then Left(InvalidFormat())
-    else if validateCheckDigit && this.calcCheckDigits(compactNumber.init) != compactNumber.last then
-      Left(InvalidChecksum())
+    else if validateCheckDigit && this.calcCheckDigits(compactNumber.init) != compactNumber.last
+    then Left(InvalidChecksum())
     else Right(compactNumber)
 
   private def calcCheckDigits(number: String): Char =

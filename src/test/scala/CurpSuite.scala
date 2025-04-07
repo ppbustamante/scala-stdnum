@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.mx.CURP
+import stdnum.mx.CURP
 
 class CURPSuite extends munit.FunSuite {
   test("format valid CURP") {

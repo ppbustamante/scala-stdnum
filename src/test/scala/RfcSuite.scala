@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.mx.RFC
+import stdnum.mx.RFC
 
 class RFCSuite extends munit.FunSuite {
   test("format valid RFC") {

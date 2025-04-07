@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.co.NIT
+import stdnum.co.NIT
 
 class NITSuite extends munit.FunSuite {
   test("format valid NIT") {

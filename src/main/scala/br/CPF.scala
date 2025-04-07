@@ -1,13 +1,6 @@
-package cl.mixin.stdnum.br
+package stdnum.br
 
-import cl.mixin.stdnum.{
-  Validator,
-  InvalidChecksum,
-  InvalidFormat,
-  InvalidLength,
-  Tools,
-  ValidationError
-}
+import stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, Tools, ValidationError, Validator}
 
 /** CPF (Cadastro de Pessoas Físicas, Brazilian national identifier).
   *

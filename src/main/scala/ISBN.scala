@@ -1,4 +1,4 @@
-package cl.mixin.stdnum
+package stdnum
 
 import scala.Vector
 

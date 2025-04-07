@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.br.CPF
+import stdnum.br.CPF
 
 class CPFSuite extends munit.FunSuite {
   test("format valid CPF") {

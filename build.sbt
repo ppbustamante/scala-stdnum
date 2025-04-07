@@ -1,4 +1,4 @@
-ThisBuild / organization := "cl.mixin"
+ThisBuild / organization := "com.github.ppbustamante"
 ThisBuild / scalaVersion := "3.3.5"
 ThisBuild / version := "1.0.0"
 ThisBuild / versionScheme := Some("semver-spec")

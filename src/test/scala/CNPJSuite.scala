@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.br.CNPJ
+import stdnum.br.CNPJ
 
 class CNPJSuite extends munit.FunSuite {
   test("format valid CNPJ") {

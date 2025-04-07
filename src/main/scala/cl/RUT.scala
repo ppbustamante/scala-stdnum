@@ -1,8 +1,6 @@
-package cl.mixin.stdnum.cl
+package stdnum.cl
 
-import cl.mixin.stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, ValidationError}
-import cl.mixin.stdnum.Validator
-import cl.mixin.stdnum.Tools
+import stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, Tools, ValidationError, Validator}
 
 /** RUT (Rol Único Tributario, Chilean national tax number).
   *
@@ -26,8 +24,8 @@ object RUT extends Validator {
     val compactNumber = this.compact(number)
     if compactNumber.length != 8 && compactNumber.length != 9 then Left(InvalidLength())
     else if !Tools.isDigits(compactNumber.init) then Left(InvalidFormat())
-    else if validateCheckDigit && this.calcCheckDigits(compactNumber.init) != compactNumber.last then
-      Left(InvalidChecksum())
+    else if validateCheckDigit && this.calcCheckDigits(compactNumber.init) != compactNumber.last
+    then Left(InvalidChecksum())
     else Right(compactNumber)
 
   /** Convert the number to the minimal representation. This strips the number of any valid

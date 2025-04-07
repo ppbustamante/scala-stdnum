@@ -1,15 +1,16 @@
-package cl.mixin.stdnum.mx
-
-import cl.mixin.stdnum.Validator
-import cl.mixin.stdnum.InvalidChecksum
-import cl.mixin.stdnum.InvalidComponent
-import cl.mixin.stdnum.InvalidFormat
-import cl.mixin.stdnum.InvalidLength
-import cl.mixin.stdnum.Tools
-import cl.mixin.stdnum.ValidationError
+package stdnum.mx
 
 import java.util.{Date, GregorianCalendar}
 import scala.util.Try
+import stdnum.{
+  InvalidChecksum,
+  InvalidComponent,
+  InvalidFormat,
+  InvalidLength,
+  Tools,
+  ValidationError,
+  Validator
+}
 
 /** CURP (Clave Única de Registro de Población, Mexican personal ID).
   *
@@ -179,7 +180,9 @@ object CURP extends Validator {
     else if this.getBirthDate(compactNumber).isFailure then Left(InvalidComponent())
     else if this.getGender(compactNumber).isEmpty then Left(InvalidComponent())
     else if !VALID_STATES.contains(compactNumber.slice(11, 13)) then Left(InvalidComponent())
-    else if validateCheckDigits && compactNumber.last.toString != this.calcCheckDigits(compactNumber)
+    else if validateCheckDigits && compactNumber.last.toString != this.calcCheckDigits(
+          compactNumber
+        )
     then Left(InvalidChecksum())
     else Right(compactNumber)
 

@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.ve.RIF
+import stdnum.ve.RIF
 
 class RIFSuite extends munit.FunSuite {
   test("format valid RIF") {

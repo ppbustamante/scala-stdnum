@@ -1,8 +1,6 @@
-package cl.mixin.stdnum.ar
+package stdnum.ar
 
-import cl.mixin.stdnum.{InvalidFormat, InvalidLength, ValidationError}
-import cl.mixin.stdnum.Validator
-import cl.mixin.stdnum.Tools
+import stdnum.{InvalidFormat, InvalidLength, Tools, ValidationError, Validator}
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
 object DNI extends Validator {

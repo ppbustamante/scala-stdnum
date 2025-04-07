@@ -1,4 +1,4 @@
-package cl.mixin.stdnum
+package stdnum
 
 /** EAN (International Article Number).
   *

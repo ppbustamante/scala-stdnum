@@ -1,4 +1,4 @@
-import cl.mixin.stdnum.EAN
+import stdnum.EAN
 
 class EANuite extends munit.FunSuite {
   test("format valid EAN") {

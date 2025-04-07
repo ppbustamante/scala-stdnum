@@ -1,6 +1,7 @@
 # scala-stdnum
 
-[![Testing](https://github.com/ppbustamante/scala-stdnum/actions/workflows/test.yml/badge.svg)](https://github.com/ppbustamante/scala-stdnum/actions/workflows/test.yml)
+[![build](https://github.com/ppbustamante/scala-stdnum/actions/workflows/build.yml/badge.svg)](https://github.com/ppbustamante/scala-stdnum/actions/workflows/build.yml)
+[![release](https://img.shields.io/github/v/release/ppbustamante/scala-stdnum)](https://github.com/ppbustamante/scala-stdnum/releases)
 
 A Scala library to parse, validate and reformat standard numbers and codes in different formats. It contains a large
 collection of number formats.

@@ -3,22 +3,19 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: CI
+name: Publish
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+  release:
+    types: [ "created" ]
     branches: [ "main" ]
 
 permissions:
   contents: read
 
 jobs:
-  build:
-
+  publish:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 21
@@ -28,8 +25,7 @@ jobs:
           distribution: 'temurin'
           cache: 'sbt'
       - uses: sbt/setup-sbt@v1
-      - name: Run tests with SBT
-        run: sbt test
-        # Optional: This step uploads information to the GitHub dependency graph and unblocking Dependabot alerts for the repository
-    # - name: Upload dependency graph
-    #  uses: scalacenter/sbt-dependency-submission@ab086b50c947c9774b70f39fc7f6e20ca2706c91
+      - name: Publish package
+        run: sbt test publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

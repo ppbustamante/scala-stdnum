@@ -19,6 +19,7 @@ Currently, this package supports the following formats:
 - CURP (Clave Única de Registro de Población, Mexican personal ID.)
 - DNI (Documento Nacional de Identidad, Argentinian national identity number).
 - EAN (International Article Number).
+- ISBN (International Standard Book Number).
 - NIT (Número De Identificación Tributaria, Colombian identity code).
 - RFC (Registro Federal de Contribuyentes, Mexican tax number).
 - RIF (Registro de Identificación Fiscal, Venezuelan VAT number).

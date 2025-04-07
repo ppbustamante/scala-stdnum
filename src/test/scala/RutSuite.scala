@@ -17,8 +17,8 @@ class RUTSuite extends munit.FunSuite {
   }
 
   test("validate invalid RUT") {
-    val validRut = RUT.validate("30.866.497-5")
-    assert(validRut.isLeft)
+    val invalidRut = RUT.validate("30.866.497-5")
+    assert(invalidRut.isLeft)
   }
 
   test("isValid valid RUT") {

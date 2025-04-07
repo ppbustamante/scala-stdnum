@@ -17,8 +17,8 @@ class CURPSuite extends munit.FunSuite {
   }
 
   test("validate invalid CURP") {
-    val validCurp = CURP.validate("BOXW310820HNERXN08")
-    assert(validCurp.isLeft)
+    val invalidCurp = CURP.validate("BOXW310820HNERXN08")
+    assert(invalidCurp.isLeft)
   }
 
   test("isValid valid CURP") {

@@ -21,8 +21,8 @@ class RFCSuite extends munit.FunSuite {
   }
 
   test("validate invalid RFC") {
-    val validRfc = RFC.validate("VACE-460910-SX6")
-    assert(validRfc.isLeft)
+    val invalidRfc = RFC.validate("VACE-460910-SX6")
+    assert(invalidRfc.isLeft)
   }
 
   test("isValid valid RFC") {

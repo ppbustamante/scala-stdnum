@@ -17,8 +17,8 @@ class CBUSuite extends munit.FunSuite {
   }
 
   test("validate invalid CBU") {
-    val validCbu = CBU.validate("2810590940090418135201")
-    assert(validCbu.isLeft)
+    val invalidCbu = CBU.validate("2810590940090418135201")
+    assert(invalidCbu.isLeft)
   }
 
   test("isValid valid CBU") {

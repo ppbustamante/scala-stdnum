@@ -1,5 +1,5 @@
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
-java=21.0.5-tem
-scala=3.3.4
-sbt=1.10.7
+java=21.0.6-tem
+scala=3.3.5
+sbt=1.10.11

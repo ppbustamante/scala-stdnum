@@ -18,13 +18,13 @@ class CNPJSuite extends munit.FunSuite {
   }
 
   test("validate invalid CNPJ") {
-    val validCnpj = CNPJ.validate("16.727.230.0001-98")
-    assert(validCnpj.isLeft)
+    val invalidCnpj = CNPJ.validate("16.727.230.0001-98")
+    assert(invalidCnpj.isLeft)
   }
 
   test("validate another invalid CNPJ") {
-    val validCnpj = CNPJ.validate("16.727.230/0001=97")
-    assert(validCnpj.isLeft)
+    val invalidCnpj = CNPJ.validate("16.727.230/0001=97")
+    assert(invalidCnpj.isLeft)
   }
 
   test("isValid valid CNPJ") {

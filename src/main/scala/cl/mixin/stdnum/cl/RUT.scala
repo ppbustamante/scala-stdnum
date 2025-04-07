@@ -1,7 +1,7 @@
 package cl.mixin.stdnum.cl
 
 import cl.mixin.stdnum.{InvalidChecksum, InvalidFormat, InvalidLength, ValidationError}
-import cl.mixin.stdnum.Identity
+import cl.mixin.stdnum.Validator
 import cl.mixin.stdnum.Tools
 
 /** RUT (Rol Único Tributario, Chilean national tax number).
@@ -9,7 +9,7 @@ import cl.mixin.stdnum.Tools
   * The RUT, the Chilean national tax number is the same as the RUN (Rol Único Nacional) the Chilean
   * national identification number. The number consists of 8 digits, followed by a check digit.
   */
-object RUT extends Identity {
+object RUT extends Validator {
 
   /** Reformat the number to the standard presentation format. */
   override def format(number: String, separator: String = " "): String =

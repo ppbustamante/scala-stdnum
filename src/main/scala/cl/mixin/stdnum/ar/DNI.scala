@@ -1,11 +1,11 @@
 package cl.mixin.stdnum.ar
 
 import cl.mixin.stdnum.{InvalidFormat, InvalidLength, ValidationError}
-import cl.mixin.stdnum.Identity
+import cl.mixin.stdnum.Validator
 import cl.mixin.stdnum.Tools
 
 /** DNI (Documento Nacional de Identidad, Argentinian national identity nr.). */
-object DNI extends Identity {
+object DNI extends Validator {
 
   override def compact(number: String): String =
     Tools.clean(number, Vector(' ', '-', '.'))

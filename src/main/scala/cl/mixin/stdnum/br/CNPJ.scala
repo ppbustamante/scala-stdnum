@@ -1,7 +1,7 @@
 package cl.mixin.stdnum.br
 
 import cl.mixin.stdnum.{
-  Identity,
+  Validator,
   InvalidChecksum,
   InvalidFormat,
   InvalidLength,
@@ -15,7 +15,7 @@ import cl.mixin.stdnum.{
   * the company, the following 4 digits identify a business unit and the last 2 digits are check
   * digits.
   */
-object CNPJ extends Identity {
+object CNPJ extends Validator {
   // clean(number, ' -./').strip()
   override def compact(number: String): String = Tools.clean(number, Vector(' ', '.', '/', '-'))
 

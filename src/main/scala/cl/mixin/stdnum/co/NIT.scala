@@ -1,7 +1,7 @@
 package cl.mixin.stdnum.co
 
 import cl.mixin.stdnum.{
-  Identity,
+  Validator,
   InvalidChecksum,
   InvalidFormat,
   InvalidLength,
@@ -14,7 +14,7 @@ import cl.mixin.stdnum.{
   * This number, also referred to as RUT (Registro Unico Tributario) is the Colombian business tax
   * number.
   */
-object NIT extends Identity {
+object NIT extends Validator {
   override def compact(number: String): String = Tools.clean(number, Vector('.', ',', '-', ' '))
 
   override def format(number: String, separator: String): String =

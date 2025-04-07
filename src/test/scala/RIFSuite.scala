@@ -17,8 +17,8 @@ class RIFSuite extends munit.FunSuite {
   }
 
   test("validate invalid RIF") {
-    val validRif = RIF.validate("V-11470283-3")
-    assert(validRif.isLeft)
+    val invalidRif = RIF.validate("V-11470283-3")
+    assert(invalidRif.isLeft)
   }
 
   test("isValid valid RIF") {

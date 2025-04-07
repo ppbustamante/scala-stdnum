@@ -1,7 +1,7 @@
 package cl.mixin.stdnum.br
 
 import cl.mixin.stdnum.{
-  Identity,
+  Validator,
   InvalidChecksum,
   InvalidFormat,
   InvalidLength,
@@ -18,7 +18,7 @@ import cl.mixin.stdnum.{
   *
   *   - https://en.wikipedia.org/wiki/Cadastro_de_Pessoas_Físicas
   */
-object CPF extends Identity {
+object CPF extends Validator {
   override def compact(number: String): String =
     Tools.clean(number, Vector(' ', '-', '.'))
 

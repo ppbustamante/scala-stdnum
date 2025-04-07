@@ -2,26 +2,30 @@
 
 [![CI](https://github.com/ppbustamante/scala-stdnum/actions/workflows/scala.yml/badge.svg)](https://github.com/ppbustamante/scala-stdnum/actions/workflows/scala.yml)
 
-A Scala library to parse, validate and reformat standard numbers and codes in different formats. It contains a large collection of number formats.
+A Scala library to parse, validate and reformat standard numbers and codes in different formats. It contains a large
+collection of number formats.
 
-Basically any number or code that has some validation mechanism available or some common formatting is eligible for inclusion in this library.
+Basically any number or code that has some validation mechanism available or some common formatting is eligible for
+inclusion in this library.
 
 ## Available formats
 
 Currently, this package supports the following formats:
 
-- RUT (Rol Único Tributario, Chilean national tax number).
-- DNI (Documento Nacional de Identidad, Argentinian national identity number).
-- CUIT (Código Único de Identificación Tributaria, Argentinian tax number).
 - CBU (Clave Bancaria Uniforme, Argentine bank account number).
-- RFC (Registro Federal de Contribuyentes, Mexican tax number).
-- CURP (Clave Única de Registro de Población, Mexican personal ID.)
-- NIT (Número De Identificación Tributaria, Colombian identity code).
 - CNPJ (Cadastro Nacional da Pessoa Jurídica, Brazilian company identifier).
 - CPF (Cadastro de Pessoas Físicas, Brazilian national identifier).
+- CUIT (Código Único de Identificación Tributaria, Argentinian tax number).
+- CURP (Clave Única de Registro de Población, Mexican personal ID.)
+- DNI (Documento Nacional de Identidad, Argentinian national identity number).
+- EAN (International Article Number).
+- NIT (Número De Identificación Tributaria, Colombian identity code).
+- RFC (Registro Federal de Contribuyentes, Mexican tax number).
 - RIF (Registro de Identificación Fiscal, Venezuelan VAT number).
+- RUT (Rol Único Tributario, Chilean national tax number).
 
-These modules generally do not provide background information on the meaning and use of the specified numbers, only parsing and handling functions.
+These modules generally do not provide background information on the meaning and use of the specified numbers, only
+parsing and handling functions.
 
 ## Interface
 
@@ -50,4 +54,5 @@ Apart from the above, the module may add extra parsing, validation or conversion
 
 ## Requirements
 
-The modules should not require any external Scala library and should be pure Scala. The modules are developed and tested with Scala 3.
+The modules should not require any external Scala library and should be pure Scala. The modules are developed and tested
+with Scala 3.

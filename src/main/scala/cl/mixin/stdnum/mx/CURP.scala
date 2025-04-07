@@ -1,6 +1,6 @@
 package cl.mixin.stdnum.mx
 
-import cl.mixin.stdnum.Identity
+import cl.mixin.stdnum.Validator
 import cl.mixin.stdnum.InvalidChecksum
 import cl.mixin.stdnum.InvalidComponent
 import cl.mixin.stdnum.InvalidFormat
@@ -21,7 +21,7 @@ import scala.util.Try
   *   - https://en.wikipedia.org/wiki/CURP
   *   - https://www.gob.mx/curp
   */
-object CURP extends Identity {
+object CURP extends Validator {
   // these values should not appear as first part
   private val NAME_BLACKLIST = Vector(
     "BACA",

@@ -17,8 +17,8 @@ class NITSuite extends munit.FunSuite {
   }
 
   test("validate invalid NIT") {
-    val validNit = NIT.validate("2131234325")
-    assert(validNit.isLeft)
+    val invalidNit = NIT.validate("2131234325")
+    assert(invalidNit.isLeft)
   }
 
   test("isValid valid NIT") {

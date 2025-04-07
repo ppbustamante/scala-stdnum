@@ -1,7 +1,7 @@
 package cl.mixin.stdnum.ve
 
 import cl.mixin.stdnum.{
-  Identity,
+  Validator,
   InvalidChecksum,
   InvalidComponent,
   InvalidFormat,
@@ -16,7 +16,7 @@ import cl.mixin.stdnum.{
   * number consists of 10 digits where the first digit denotes the type of number (person, company
   * or government) and the last digit is a check digit.
   */
-object RIF extends Identity {
+object RIF extends Validator {
   private val COMPANY_TYPE = Map(
     'V' -> 4,
     'E' -> 8,

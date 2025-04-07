@@ -1,6 +1,6 @@
 package cl.mixin.stdnum.ar
 
-import cl.mixin.stdnum.Identity
+import cl.mixin.stdnum.Validator
 import cl.mixin.stdnum.InvalidChecksum
 import cl.mixin.stdnum.InvalidComponent
 import cl.mixin.stdnum.InvalidFormat
@@ -9,7 +9,7 @@ import cl.mixin.stdnum.Tools
 import cl.mixin.stdnum.ValidationError
 
 /** CUIT (Código Único de Identificación Tributaria, Argentinian tax number). */
-object CUIT extends Identity {
+object CUIT extends Validator {
   private val CUIT_TYPES = Vector(
     "20",
     "23",

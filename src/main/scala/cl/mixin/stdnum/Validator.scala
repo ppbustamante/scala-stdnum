@@ -1,6 +1,6 @@
 package cl.mixin.stdnum
 
-trait Identity {
+trait Validator {
 
   /** Convert the number to the minimal representation. This strips the number of any valid
     * separators and removes surrounding whitespace.

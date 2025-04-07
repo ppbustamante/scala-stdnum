@@ -1,6 +1,6 @@
 package cl.mixin.stdnum.mx
 
-import cl.mixin.stdnum.Identity
+import cl.mixin.stdnum.Validator
 import cl.mixin.stdnum.InvalidChecksum
 import cl.mixin.stdnum.InvalidComponent
 import cl.mixin.stdnum.InvalidFormat
@@ -34,7 +34,7 @@ import scala.util.matching.Regex
   * An online validation service is available at:
   *   - https://portalsat.plataforma.sat.gob.mx/ConsultaRFC/
   */
-object RFC extends Identity {
+object RFC extends Validator {
   // these values should not appear as first part of a personal number
   private val NAME_BLACKLIST = Vector(
     "BUEI",

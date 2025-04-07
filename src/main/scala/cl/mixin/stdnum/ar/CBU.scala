@@ -1,7 +1,7 @@
 package cl.mixin.stdnum.ar
 
 import cl.mixin.stdnum.{
-  Identity,
+  Validator,
   InvalidChecksum,
   InvalidFormat,
   InvalidLength,
@@ -19,7 +19,7 @@ import cl.mixin.stdnum.{
   *
   *   - https://es.wikipedia.org/wiki/Clave_Bancaria_Uniforme
   */
-object CBU extends Identity {
+object CBU extends Validator {
   override def compact(number: String): String = Tools.clean(number, Vector(' ', '-'))
 
   override def format(number: String, separator: String = " "): String =

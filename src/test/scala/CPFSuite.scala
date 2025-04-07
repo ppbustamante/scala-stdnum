@@ -17,13 +17,13 @@ class CPFSuite extends munit.FunSuite {
   }
 
   test("validate invalid CPF") {
-    val validCpf = CPF.validate("231.002.999-00")
-    assert(validCpf.isLeft)
+    val invalidCpf = CPF.validate("231.002.999-00")
+    assert(invalidCpf.isLeft)
   }
 
   test("validate another invalid CPF") {
-    val validCpf = CPF.validate("390.533.447=0")
-    assert(validCpf.isLeft)
+    val invalidCpf = CPF.validate("390.533.447=0")
+    assert(invalidCpf.isLeft)
   }
 
   test("isValid valid CPF") {
